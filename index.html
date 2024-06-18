@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>GROUP 10 - PROJECT</title>
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <div>
+                <h3>FINAL PROJECT</h5>
+                <ul>
+                    <li><a href="#!">Dashboard</a></li>
+                    <li><a href="#!">Docs</a></li>
+                </ul>
+                <h3>Group 10</h3>
+            </div>
+       </nav>
+    </header>
+    <section>
+        <div class="box--">
+            <div>
+                <h1 id="ph level">15</h1>
+                <h6>pH Level</h6>
+                <p id="ph_percentage">100%</p>
+            </div>
+            <div class="graph">
+                <svg height="100" width="100" xmlns="http://www.w3.org/2000/svg">
+                    <circle r="45" cx="50" cy="50" fill="none" stroke="blanchedalmond" stroke-width="10" />
+                </svg>
+                <img src="phlevel.png" alt="">
+            </div>
+        </div>
+        <div class="box--">
+            <div>
+                <h1 id="temperature">100 °C</h1>
+                <h6>Temperature</h6>
+                <p id="temp_percentage">100%</p>
+            </div>
+            <div class="graph">
+                <svg height="100" width="100" xmlns="http://www.w3.org/2000/svg">
+                    <circle r="45" cx="50" cy="50" fill="none" stroke="blanchedalmond" stroke-width="10" />
+                </svg>
+                <img src="mdi_temperature.png" alt="">
+            </div>
+        </div>
+        <div class="box--">
+            <div>
+                <h1 id="dissolved">10</h1>
+                <h6>Dissolved Oxygen</h6>
+                <p id="do_percentage">100%</p>
+            </div>
+            <div class="graph">
+                <svg height="100" width="100" xmlns="http://www.w3.org/2000/svg">
+                    <circle r="45" cx="50" cy="50" fill="none" stroke="blanchedalmond" stroke-width="10" />
+                </svg>
+                <img src="mdi_oxygen-tank.png" alt="">
+            </div>
+        </div>
+        <div class="box--">
+            <div>
+                <h1 id="humidity">100%</h1>
+                <h6>Humidity</h6>
+                <p id="hum_percentage">100%</p>
+            </div>
+            <div class="graph">
+                <svg height="100" width="100" xmlns="http://www.w3.org/2000/svg">
+                    <circle r="45" cx="50" cy="50" fill="none" stroke="blanchedalmond" stroke-width="10" />
+                </svg>
+                <img src="mdi_humidity.png" alt="">
+            </div>
+        </div>
+    </section>
+    <section class="section--2">
+        <div class="box--2">
+            <div class="chart-container">
+                <div class="y-axis">
+                    <div>100%</div>
+                    <div>75%</div>
+                    <div>50%</div>
+                    <div>25%</div>
+                    <div>0%</div>
+                </div>
+                <div class="bar-chart">
+                    <div class="bar" id="bar1" label="0%" style="height: 100%;">
+                        <div class="bar-label">pH Level</div>
+                    </div>
+                    <div class="bar" id="bar2" label="0%" style="height: 100%;">
+                        <div class="bar-label">Temperature</div>
+                    </div>
+                    <div class="bar" id="bar3" label="0%" style="height: 60%;">
+                        <div class="bar-label">DO</div>
+                    </div>
+                    <div class="bar" id="bar4" label="0%" style="height: 100%;">
+                        <div class="bar-label">Humidity</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box--3">
+            <div>
+                <h1>LED Control</h1>
+            </div>
+            <div>
+                <div class="switch--container">
+                    <h3>LED 1</h3>
+                    <label class="switch">
+                        <input type="checkbox" id="led1">    
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="switch--container">
+                    <h3>LED 2</h3>
+                    <label class="switch">
+                        <input type="checkbox" id="led2">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="switch--container">
+                    <h3>LED 3</h3>
+                    <label class="switch">
+                        <input type="checkbox" id="led3">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="switch--container">
+                    <h3>LED 4</h3>
+                    <label class="switch">
+                        <input type="checkbox" id="led4">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script type="text/javascript" src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyD5EbmILcdk2cAECvrk693he341HVW1H_I",
+          authDomain: "group10labproject-6ddef.firebaseapp.com",
+          databaseURL: "https://group10labproject-6ddef-default-rtdb.asia-southeast1.firebasedatabase.app",
+          projectId: "group10labproject-6ddef",
+          storageBucket: "group10labproject-6ddef.appspot.com",
+          messagingSenderId: "658189825091",
+          appId: "1:658189825091:web:0d2412efa6f35e48eb10f6",
+          measurementId: "G-7ZYZSN1SJK"
+        };
+      
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        var database = firebase.database();
+        var dataRef1 = database.ref('Sensor/DO');
+        var dataRef2 = database.ref('Sensor/Hum');
+        var dataRef3 = database.ref('Sensor/Temp');
+        var dataRef4 = database.ref('Sensor/ph');
+
+
+        var Led1Status;
+        var Led2Status;
+        var Led3Status;
+        var Led4Status;
+
+        var ledStatus = {
+            led1: 0,
+            led2: 0,
+            led3: 0,
+            led4: 0
+        }
+        // Function to handle LED changes
+        function handleLedChange(ledId) {
+            return function() {
+                var firebaseRef = firebase.database().ref().child("LED/" + ledId);
+                var newStatus = 1 - ledStatus[ledId]; // Toggle LED status
+                firebaseRef.set(newStatus);
+            };
+        }
+        // Register change listeners for each LED
+        $("#led1").change(handleLedChange("led1"));
+        $("#led2").change(handleLedChange("led2"));
+        $("#led3").change(handleLedChange("led3"));
+        $("#led4").change(handleLedChange("led4"));
+        // Listen to changes in the database for all LEDs
+        database.ref("LED").on("value", function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+                var ledId = childSnapshot.key;
+                var ledValue = childSnapshot.val();
+                ledStatus[ledId] = ledValue;
+                $("#" + ledId).prop("checked", ledValue); // Update UI if needed
+                });
+            });
+
+
+        dataRef1.on('value', function(getdata1){
+            var diss = getdata1.val();
+            var percent_diss = (Math.round((diss/10)*100))+'%'
+            document.getElementById('dissolved').innerHTML = diss;
+            document.getElementById('bar3').style.height = percent_diss;
+            document.getElementById('do_percentage').innerHTML = percent_diss;
+            document.getElementById('bar3').setAttribute('label', percent_diss);
+        })
+
+        dataRef2.on('value', function(getdata1){
+            var hum = getdata1.val();
+            var percent_hum = (Math.round((hum/100)*100))+'%'
+            document.getElementById('humidity').innerHTML = hum + '%';
+            document.getElementById('hum_percentage').innerHTML = percent_hum;
+            document.getElementById('bar4').style.height = percent_hum;
+            document.getElementById('bar4').setAttribute('label', percent_hum);
+            
+        })
+
+        dataRef3.on('value', function(getdata1){
+            var temp = getdata1.val();
+            var percent_temp = (Math.round((temp/373)*100))+'%'
+            document.getElementById('temperature').innerHTML = temp + " K";
+            document.getElementById('temp_percentage').innerHTML = percent_temp;
+            document.getElementById('bar2').style.height = percent_temp;
+            document.getElementById('bar2').setAttribute('label', percent_temp);
+            
+        })
+
+        dataRef4.on('value', function(getdata1){
+            var ph = getdata1.val();
+            var percent_ph = (Math.round((ph/14)*100)) + '%'
+            document.getElementById('ph level').innerHTML = ph;
+            document.getElementById('ph_percentage').innerHTML = percent_ph;
+            document.getElementById('bar1').style.height = percent_ph;
+            document.getElementById('bar1').setAttribute('label', percent_ph);
+            
+            
+        })
+      </script>
+</body>
+</html>
